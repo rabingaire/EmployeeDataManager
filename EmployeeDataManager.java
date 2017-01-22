@@ -33,8 +33,12 @@ public class EmployeeDataManager {
   }
 
   public static void main(String[] args) {
+    //object for calling non-static methods
     EmployeeDataManager dataManager = new EmployeeDataManager();
+    //displays the title of the program
     dataManager.displayTitle("Employee Data Manager","-");
+    //displays the menu of the program
     dataManager.displayMenu();
+    
   }
 }
