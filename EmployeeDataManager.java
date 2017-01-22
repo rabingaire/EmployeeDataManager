@@ -1,6 +1,9 @@
 import java.util.*;
 public class EmployeeDataManager {
 
+  public String[] employeeNames;
+  public int[] workedHour;
+
   public EmployeeDataManager(String displayTitle, String displayDecoration) { //constructor
     System.out.println();
     for(int i = 0; i < 50; i++) {
@@ -33,7 +36,15 @@ public class EmployeeDataManager {
   }
 
   public void inputData() {
-    System.out.print("Input Data");
+    Scanner input = new Scanner(System.in);
+    System.out.print("Please enter employee name: ");
+    String employeeName = input.nextLine();
+    System.out.print("Please enter skill level (1, 2, 3): ");
+    int skillLevel = input.nextInt();
+  }
+
+  public boolean isValidName(String name){
+    
   }
 
   public void selectOption() {
