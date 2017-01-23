@@ -33,8 +33,8 @@ public class EmployeeDataManager {
     System.out.print("Please enter worked hour: ");
     int workedHour = input.nextInt();
 
-    if( workedHour >= 0 && workedHour <= 60) {
-      if (calculateWage(skillLevel, workedHour)) { //calling function to calculate wage
+    if( workedHour >= 0 && workedHour <= 60) { //validate worked hour
+      if (calculateWage(skillLevel, workedHour)) { //calling function to calculate wage and validate skillLevel
         //adding data to ArrayList
         employeeNames.add(name);
         workedHours.add(workedHour);
@@ -42,7 +42,7 @@ public class EmployeeDataManager {
     } else  {
       System.out.println("Worked hour must be at the range between 0 and 60 try agin!");
     }
-
+    //calling menu
     System.out.println(" ");
     displayMenu();
     selectOption();
@@ -83,6 +83,7 @@ public class EmployeeDataManager {
     System.out.println("\t\t\tEmployee\tWorked hours\tWage");
     System.out.println("\t\t\t----------------------------------------");
 
+    //display all list/Data
     for (int i = 0; i < employeeNames.size(); i++ ) {
       System.out.println("\t\t\t" + employeeNames.get(i) + "\t" + workedHours.get(i) + "\t\t$" + wage.get(i) );
     }
@@ -90,6 +91,7 @@ public class EmployeeDataManager {
     System.out.println();
     System.out.println("\t\t\tTotal:" + employeeNames.size() + " data entries");
 
+    //calling the menu
     System.out.println();
     displayMenu();
     selectOption();
