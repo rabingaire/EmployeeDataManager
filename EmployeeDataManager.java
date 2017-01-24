@@ -27,7 +27,7 @@ public class EmployeeDataManager {
   public void inputData() {
     Scanner input = new Scanner(System.in);
     System.out.print("Please enter employee name: ");
-    String name = input.nextLine();
+    String name = input.nextLine().toLowerCase();
     System.out.print("Please enter skill level (1, 2, 3): ");
     int skillLevel = input.nextInt();
     System.out.print("Please enter worked hour: ");
@@ -64,8 +64,10 @@ public class EmployeeDataManager {
       case 4:
         break;
       case 5:
+        searchByName();
         break;
       case 6:
+        searchByHours();
         break;
       case 7:
         break;
@@ -90,6 +92,54 @@ public class EmployeeDataManager {
 
     System.out.println();
     System.out.println("\t\t\tTotal:" + employeeNames.size() + " data entries");
+
+    //calling the menu
+    System.out.println();
+    displayMenu();
+    selectOption();
+  }
+
+  public void searchByName() {
+    Scanner input = new Scanner(System.in);
+    System.out.print("Please enter employee name: ");
+    String searchName = input.nextLine().toLowerCase();
+
+    System.out.println();
+    if(employeeNames.contains(searchName)) {
+      for ( int i = 0; i < employeeNames.size(); i++ ) {
+        if(searchName.equals(employeeNames.get(i))) {
+          System.out.println("\t\t\t" + employeeNames.get(i) + " - Worked Hours: " + workedHours.get(i) + " - Wage:$" + wage.get(i) );
+        }
+      }
+      System.out.println("\t\t--------------------------------------------------");
+    } else  {
+      System.out.println("Sorry! Data Not Found.");
+    }
+
+    //calling the menu
+    System.out.println();
+    displayMenu();
+    selectOption();
+  }
+
+  public void searchByHours() {
+    boolean checkDataExists = false;
+    Scanner input = new Scanner(System.in);
+    System.out.print("Please enter the specific number of worked hours: ");
+    int searchHour = input.nextInt();
+
+    System.out.println("The following employees have less than " + searchHour + " worked hours:");
+    System.out.println();
+    for ( int i = 0; i < workedHours.size(); i++ ) {
+      if(searchHour >= workedHours.get(i)) {
+        checkDataExists = true;
+        System.out.println("\t\t" + employeeNames.get(i) + "  " + workedHours.get(i) + " hours");
+      }
+    }
+    if(!checkDataExists) {
+      System.out.println("Sorry! Data not found.");
+    }
+    System.out.println();
 
     //calling the menu
     System.out.println();
