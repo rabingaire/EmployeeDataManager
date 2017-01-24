@@ -154,9 +154,42 @@ public class EmployeeDataManager {
     System.out.println();
     System.out.println("\t\t\t========================================");
     System.out.println();
-    System.out.println("\tThe employee has lowest worked hours: ");
-    System.out.println("\tThe employee has hightest worked hours: ");
+
+    for ( int i = 0; i < workedHours.size(); i++ ) {
+      //displays lowest workedHour info
+      if(checkLowest() == workedHours.get(i)) {
+        System.out.println("\tThe employee has lowest worked hours: " + employeeNames.get(i) + ", " + workedHours.get(i) + " hours"  );
+      }
+      //displays highest workedHour info
+      if(checkHighest() == workedHours.get(i)) {
+        System.out.println("\tThe employee has highest worked hours: " + employeeNames.get(i) + ", " + workedHours.get(i) + " hours"  );
+      }
+    }
     System.out.println("\tThe median value of worked hours: ");
+  }
+
+  public int checkLowest() {
+    int lowest = workedHours.get(1);
+    for ( int i = 0; i < workedHours.size(); i++ ) {
+      if ( workedHours.get(i) < lowest){
+        lowest = workedHours.get(i);
+      }
+    }
+    return lowest;
+  }
+
+  public int checkHighest() {
+    int highest = 0;
+    for ( int i = 0; i < workedHours.size(); i++ ) {
+      if ( workedHours.get(i) > highest){
+        highest = workedHours.get(i);
+      }
+    }
+    return highest;
+  }
+
+  public int median() {
+    
   }
 
   public boolean calculateWage(int skillLevel, int workedHour){
