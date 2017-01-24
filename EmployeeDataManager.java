@@ -40,43 +40,55 @@ public class EmployeeDataManager {
         workedHours.add(workedHour);
       }
     } else  {
-      System.out.println("Worked hour must be at the range between 0 and 60 try agin!");
+      System.out.println();
+      System.out.println("\t----------------------------------------------------------------------");
+      System.out.println("\t\tWorked hour must be at the range between 0 and 60 try agin!");
+      System.out.println("\t----------------------------------------------------------------------");
     }
-    //calling menu
-    System.out.println(" ");
-    displayMenu();
-    selectOption();
   }
 
   public void selectOption() {
     Scanner input = new Scanner(System.in);
-    System.out.print("Enter options 1-8: ");
-    int selectionValue = input.nextInt();
-    switch(selectionValue) {
-      case 1:
-        inputData();
-        break;
-      case 2:
-        display();
-        break;
-      case 3:
-        break;
-      case 4:
-        break;
-      case 5:
-        searchByName();
-        break;
-      case 6:
-        searchByHours();
-        break;
-      case 7:
-        break;
-      case 8:
-        System.out.println("Thank You");
-        break;
-      default:
-        System.out.println("Wrong Input");
-    }
+    int selectionValue;
+    do{
+      System.out.println();
+      //displays the menu of the program
+      displayMenu();
+      System.out.print("Enter options 1-8: ");
+      selectionValue = input.nextInt();
+      switch(selectionValue) {
+        case 1:
+          inputData();
+          break;
+        case 2:
+          display();
+          break;
+        case 3:
+          break;
+        case 4:
+          break;
+        case 5:
+          searchByName();
+          break;
+        case 6:
+          searchByHours();
+          break;
+        case 7:
+          break;
+        case 8:
+          System.out.println();
+          System.out.println("\t\t-------------------------");
+          System.out.println("\t\t\tThank You");
+          System.out.println("\t\t-------------------------");
+          break;
+        default:
+          System.out.println();
+          System.out.println("\t\t-------------------------");
+          System.out.println("\t\t\tWrong Input");
+          System.out.println("\t\t-------------------------");
+
+      }
+    } while (selectionValue != 8);
   }
 
   public void display() {
@@ -92,11 +104,6 @@ public class EmployeeDataManager {
 
     System.out.println();
     System.out.println("\t\t\tTotal:" + employeeNames.size() + " data entries");
-
-    //calling the menu
-    System.out.println();
-    displayMenu();
-    selectOption();
   }
 
   public void searchByName() {
@@ -113,13 +120,10 @@ public class EmployeeDataManager {
       }
       System.out.println("\t\t--------------------------------------------------");
     } else  {
-      System.out.println("Sorry! Data Not Found.");
+      System.out.println("\t\t--------------------------------------------------");
+      System.out.println("\t\t\tSorry! Data Not Found.");
+      System.out.println("\t\t--------------------------------------------------");
     }
-
-    //calling the menu
-    System.out.println();
-    displayMenu();
-    selectOption();
   }
 
   public void searchByHours() {
@@ -137,14 +141,11 @@ public class EmployeeDataManager {
       }
     }
     if(!checkDataExists) {
-      System.out.println("Sorry! Data not found.");
+      System.out.println("\t\t--------------------------------------------------");
+      System.out.println("\t\t\tSorry! Data not found.");
+      System.out.println("\t\t--------------------------------------------------");
     }
     System.out.println();
-
-    //calling the menu
-    System.out.println();
-    displayMenu();
-    selectOption();
   }
 
   public boolean calculateWage(int skillLevel, int workedHour){
@@ -162,7 +163,10 @@ public class EmployeeDataManager {
         wage.add(wageSkillThree);
         return true;
       default:
-        System.out.println("Wrong Input skillLevel cannot be " + skillLevel + " try again!");
+        System.out.println();
+        System.out.println("\t\t------------------------------------------------------------");
+        System.out.println("\t\t\tWrong Input skillLevel cannot be " + skillLevel + " try again!");
+        System.out.println("\t\t------------------------------------------------------------");
         return false;
     }
   }
@@ -170,8 +174,7 @@ public class EmployeeDataManager {
   public static void main(String[] args) {
     //object for calling non-static methods
     EmployeeDataManager dataManager = new EmployeeDataManager();
-    //displays the menu of the program
-    dataManager.displayMenu();
+
     //calls the selectOption input module
     dataManager.selectOption();
   }
