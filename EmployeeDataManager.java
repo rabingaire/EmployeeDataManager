@@ -74,6 +74,7 @@ public class EmployeeDataManager {
           searchByHours();
           break;
         case 7:
+          statistics();
           break;
         case 8:
           System.out.println();
@@ -146,6 +147,16 @@ public class EmployeeDataManager {
       System.out.println("\t\t--------------------------------------------------");
     }
     System.out.println();
+  }
+
+  public void statistics() {
+    System.out.println("\t\t\t\tA simple statistics");
+    System.out.println();
+    System.out.println("\t\t\t========================================");
+    System.out.println();
+    System.out.println("\tThe employee has lowest worked hours: ");
+    System.out.println("\tThe employee has hightest worked hours: ");
+    System.out.println("\tThe median value of worked hours: ");
   }
 
   public boolean calculateWage(int skillLevel, int workedHour){
