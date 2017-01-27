@@ -64,7 +64,7 @@ public class EmployeeDataManager {
           display();
           break;
         case 3:
-
+          sortByName();
           break;
         case 4:
           sortByHours();
@@ -212,6 +212,31 @@ public class EmployeeDataManager {
         System.out.println("\t\t------------------------------------------------------------");
         return false;
     }
+  }
+
+  public void sortByName() {
+    int i = 0;
+    int j = employeeNames.size() - 1;
+    while(i < employeeNames.size()) {
+      while(j > i) {
+        if(employeeNames.get(i).compareTo(employeeNames.get(j)) > 0) {
+          String tempString = employeeNames.get(i);
+          employeeNames.set(i,employeeNames.get(j));
+          employeeNames.set(j,tempString);
+
+          int temp = workedHours.get(i);
+          workedHours.set(i,workedHours.get(j));
+          workedHours.set(j,temp);
+
+          int tempInt = wage.get(i);
+          wage.set(i,wage.get(j));
+          wage.set(j,tempInt);
+        }
+        j--;
+      }
+      i++;
+    }
+    display();
   }
 
   public void sortByHours() {
