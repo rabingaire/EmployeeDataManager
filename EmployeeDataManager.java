@@ -214,23 +214,23 @@ public class EmployeeDataManager {
     }
   }
 
-  public void sortByName() {
-    int i = 0;
-    int j = employeeNames.size() - 1;
+  public void sortByName() { //insertion sort
+    int i = 1;
     while(i < employeeNames.size()) {
-      while(j > i) {
-        if(employeeNames.get(i).compareTo(employeeNames.get(j)) > 0) {
-          String tempString = employeeNames.get(i);
-          employeeNames.set(i,employeeNames.get(j));
-          employeeNames.set(j,tempString);
+      int j = i;
+      while(j > 0) {
+        if(employeeNames.get(j).compareTo(employeeNames.get(j-1)) < 0) {
+          String tempString = employeeNames.get(j);
+          employeeNames.set(i,employeeNames.get(j-1));
+          employeeNames.set(j-1,tempString);
 
-          int temp = workedHours.get(i);
-          workedHours.set(i,workedHours.get(j));
-          workedHours.set(j,temp);
+          int temp = workedHours.get(j);
+          workedHours.set(j,workedHours.get(j-1));
+          workedHours.set(j-1,temp);
 
-          int tempInt = wage.get(i);
-          wage.set(i,wage.get(j));
-          wage.set(j,tempInt);
+          int tempInt = wage.get(j);
+          wage.set(i,wage.get(j-1));
+          wage.set(j-1,tempInt);
         }
         j--;
       }
@@ -239,23 +239,23 @@ public class EmployeeDataManager {
     display();
   }
 
-  public void sortByHours() {
-    int i = 0;
-    int j = workedHours.size() - 1;
+  public void sortByHours() { //insertion sort
+    int i = 1;
     while (i < workedHours.size()) {
-      while(j > i){
-        if(workedHours.get(i) > workedHours.get(j)){
-          int temp = workedHours.get(i);
-          workedHours.set(i,workedHours.get(j));
-          workedHours.set(j,temp);
+      int j = i;
+      while(j > 0){
+        if(workedHours.get(j) < workedHours.get(j-1)){
+          int temp = workedHours.get(j);
+          workedHours.set(j,workedHours.get(j-1));
+          workedHours.set(j-1,temp);
 
-          String tempString = employeeNames.get(i);
-          employeeNames.set(i,employeeNames.get(j));
-          employeeNames.set(j,tempString);
+          String tempString = employeeNames.get(j);
+          employeeNames.set(i,employeeNames.get(j-1));
+          employeeNames.set(j-1,tempString);
 
-          int tempInt = wage.get(i);
-          wage.set(i,wage.get(j));
-          wage.set(j,tempInt);
+          int tempInt = wage.get(j);
+          wage.set(i,wage.get(j-1));
+          wage.set(j-1,tempInt);
         }
         j--;
       }
