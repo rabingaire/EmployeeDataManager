@@ -64,8 +64,10 @@ public class EmployeeDataManager {
           display();
           break;
         case 3:
+
           break;
         case 4:
+          sortByHours();
           break;
         case 5:
           searchByName();
@@ -188,9 +190,6 @@ public class EmployeeDataManager {
     return highest;
   }
 
-  public int median() {
-    
-  }
 
   public boolean calculateWage(int skillLevel, int workedHour){
     switch(skillLevel) {
@@ -213,6 +212,31 @@ public class EmployeeDataManager {
         System.out.println("\t\t------------------------------------------------------------");
         return false;
     }
+  }
+
+  public void sortByHours() {
+    int i = 0;
+    int j = workedHours.size() - 1;
+    while (i < workedHours.size()) {
+      while(j > i){
+        if(workedHours.get(i) > workedHours.get(j)){
+          int temp = workedHours.get(i);
+          workedHours.set(i,workedHours.get(j));
+          workedHours.set(j,temp);
+
+          String tempString = employeeNames.get(i);
+          employeeNames.set(i,employeeNames.get(j));
+          employeeNames.set(j,tempString);
+
+          int tempInt = wage.get(i);
+          wage.set(i,wage.get(j));
+          wage.set(j,tempInt);
+        }
+        j--;
+      }
+      i++;
+    }
+    display();
   }
 
   public static void main(String[] args) {
