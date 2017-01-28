@@ -3,7 +3,7 @@ public class EmployeeDataManager {
 
   public ArrayList<String> employeeNames = new ArrayList<String>();
   public ArrayList<Integer> workedHours = new ArrayList<Integer>();
-  public ArrayList<Integer> wage = new ArrayList<Integer>();
+  public ArrayList<Double> wage = new ArrayList<Double>();
 
   public EmployeeDataManager() { //constructor
     System.out.println();
@@ -138,7 +138,7 @@ public class EmployeeDataManager {
     System.out.println("The following employees have less than " + searchHour + " worked hours:");
     System.out.println();
     for ( int i = 0; i < workedHours.size(); i++ ) {
-      if(searchHour >= workedHours.get(i)) {
+      if(searchHour > workedHours.get(i)) {
         checkDataExists = true;
         System.out.println("\t\t" + employeeNames.get(i) + "  " + workedHours.get(i) + " hours");
       }
@@ -167,7 +167,9 @@ public class EmployeeDataManager {
         System.out.println("\tThe employee has highest worked hours: " + employeeNames.get(i) + ", " + workedHours.get(i) + " hours"  );
       }
     }
-    System.out.println("\tThe median value of worked hours: ");
+    if(workedHours.size() > 0) {
+      System.out.println("\tThe median value of worked hours: " + calculateMedian() + " hours");
+    }
   }
 
   public int checkLowest() {
@@ -190,19 +192,27 @@ public class EmployeeDataManager {
     return highest;
   }
 
+  public int calculateMedian() {
+    int middle = workedHours.size()/2;
+    if (workedHours.size()%2 == 1) {
+        return workedHours.get(middle);
+    } else {
+        return (workedHours.get(middle-1) + workedHours.get(middle)) / 2;
+    }
+  }
 
   public boolean calculateWage(int skillLevel, int workedHour){
     switch(skillLevel) {
       case 1:
-        int wageSkillOne = workedHour * 15;
+        double wageSkillOne = workedHour * 15;
         wage.add(wageSkillOne);
         return true;
       case 2:
-        int wageSkillTwo = workedHour * 17;
+        double wageSkillTwo = workedHour * 17;
         wage.add(wageSkillTwo);
         return true;
       case 3:
-        int wageSkillThree = workedHour * 21;
+        double wageSkillThree = workedHour * 21;
         wage.add(wageSkillThree);
         return true;
       default:
@@ -221,16 +231,16 @@ public class EmployeeDataManager {
       while(j > 0) {
         if(employeeNames.get(j).compareTo(employeeNames.get(j-1)) < 0) {
           String tempString = employeeNames.get(j);
-          employeeNames.set(i,employeeNames.get(j-1));
+          employeeNames.set(j,employeeNames.get(j-1));
           employeeNames.set(j-1,tempString);
 
           int temp = workedHours.get(j);
           workedHours.set(j,workedHours.get(j-1));
           workedHours.set(j-1,temp);
 
-          int tempInt = wage.get(j);
-          wage.set(i,wage.get(j-1));
-          wage.set(j-1,tempInt);
+          double tempDouble = wage.get(j);
+          wage.set(j,wage.get(j-1));
+          wage.set(j-1,tempDouble);
         }
         j--;
       }
@@ -250,12 +260,12 @@ public class EmployeeDataManager {
           workedHours.set(j-1,temp);
 
           String tempString = employeeNames.get(j);
-          employeeNames.set(i,employeeNames.get(j-1));
+          employeeNames.set(j,employeeNames.get(j-1));
           employeeNames.set(j-1,tempString);
 
-          int tempInt = wage.get(j);
-          wage.set(i,wage.get(j-1));
-          wage.set(j-1,tempInt);
+          double tempDouble = wage.get(j);
+          wage.set(j,wage.get(j-1));
+          wage.set(j-1,tempDouble);
         }
         j--;
       }
