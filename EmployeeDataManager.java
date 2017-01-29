@@ -1,4 +1,6 @@
 import java.util.*;
+import java.lang.*;
+
 public class EmployeeDataManager {
 
   public ArrayList<String> employeeNames = new ArrayList<String>();
@@ -33,17 +35,59 @@ public class EmployeeDataManager {
     System.out.print("Please enter worked hour: ");
     int workedHour = input.nextInt();
 
-    if( workedHour >= 0 && workedHour <= 60) { //validate worked hour
-      if (calculateWage(skillLevel, workedHour)) { //calling function to calculate wage and validate skillLevel
-        //adding data to ArrayList
-        employeeNames.add(name);
-        workedHours.add(workedHour);
+    if( isValidName(name) ) {
+
+      if( workedHour >= 0 && workedHour <= 60) { //validate worked hour
+        if (calculateWage(skillLevel, workedHour)) { //calling function to calculate wage and validate skillLevel
+          //adding data to ArrayList
+          employeeNames.add(name);
+          workedHours.add(workedHour);
+        }
+      } else  {
+        System.out.println();
+        System.out.println("\t----------------------------------------------------------------------");
+        System.out.println("\t\tWorked hour must be at the range between 0 and 60 try agin!");
+        System.out.println("\t----------------------------------------------------------------------");
       }
-    } else  {
+    } else {
       System.out.println();
       System.out.println("\t----------------------------------------------------------------------");
-      System.out.println("\t\tWorked hour must be at the range between 0 and 60 try agin!");
+      System.out.println("\t\tThere is something wrong with name. Please check & try again!");
       System.out.println("\t----------------------------------------------------------------------");
+    }
+  }
+
+  public boolean isValidName(String name) {
+    int nameLength = name.length();
+    int space = 0;
+    int position, isCharacterDigit = 0;
+    if(nameLength <= 25) {
+      String[] splitedName = name.split("");
+      for(int i = 0;i < name.length();i++) {
+        if(splitedName[i].equals(" ")){
+          space++;
+          position = i;
+          if(position == 1 || position == nameLength) {
+            return false;
+          }
+        }
+
+        //every time this code finds number in name the value of isCharacterDigit is increased
+        for(int j = 0; j<=9; j++) {
+          String k = Integer.toString(j); //converting Int into String
+          if( k.equals(splitedName[i]) ) {
+            isCharacterDigit++;
+          }
+        }
+      }
+
+      if(space > 1 || isCharacterDigit > 0) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
     }
   }
 
